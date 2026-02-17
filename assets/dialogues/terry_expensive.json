@@ -3,8 +3,8 @@
     {
       "id": "expensive_select",
       "trigger": "select_expensive",
-      "text": "Expensive Things! Luxury positioning. I learned about this at Wharton. Well, I read about Wharton. In a dumpster behind Wharton.",
-      "mood": "impressed"
+      "text": "Okay. Well, that's, uh, I guess for a certain clientele, huh? So different kind of marketing--*arms in the air* alright.",
+      "mood": "resigned_acceptance"
     },
     {
       "id": "expensive_playing_1",

@@ -3,8 +3,8 @@
     {
       "id": "bad_select",
       "trigger": "select_bad",
-      "text": "Bad Things? Oh. Oh no. This is... this is exactly what my ethics professor warned me about. He was a bratwurst.",
-      "mood": "concerned"
+      "text": "Okay well--it's bad? We're gonna... it's a bad thing? It's just... it's bad? And you want to *sell* this? Okay....",
+      "mood": "bewildered"
     },
     {
       "id": "bad_playing_1",

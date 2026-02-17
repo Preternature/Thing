@@ -3,8 +3,8 @@
     {
       "id": "good_select",
       "trigger": "select_good",
-      "text": "A Good Thing! Quality over quantity. Very noble. Very slow. But noble.",
-      "mood": "approving"
+      "text": "It's... good. Okay. Well, I'm gonna zhuzh that up a bit, if you don't mind. Uh... you just focus on... your... thing.",
+      "mood": "uncertain"
     },
     {
       "id": "good_playing_1",

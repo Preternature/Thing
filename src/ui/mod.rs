@@ -22,7 +22,13 @@ impl Plugin for UiPlugin {
             .add_message::<ClickEvent>()
             .add_systems(OnEnter(AppState::ThingSelection), setup_selection_screen)
             .add_systems(OnExit(AppState::ThingSelection), cleanup_selection_screen)
-            .add_systems(Update, handle_selection_buttons.run_if(in_state(AppState::ThingSelection)))
+            .add_systems(
+                Update,
+                (
+                    handle_selection_buttons,
+                    update_selection_timer,
+                ).run_if(in_state(AppState::ThingSelection)),
+            )
             .add_systems(OnEnter(AppState::Playing), setup_main_screen)
             .add_systems(OnExit(AppState::Playing), cleanup_main_screen)
             .add_systems(

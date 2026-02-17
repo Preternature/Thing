@@ -13,7 +13,40 @@ pub struct SelectionScreen;
 #[derive(Component)]
 pub struct ThingTypeButton(pub ThingType);
 
+/// Marker for Terry's dialogue text (so we can update it)
+#[derive(Component)]
+pub struct TerryDialogueText;
+
+/// Tracks how long the player has been staring at the selection screen
+#[derive(Resource)]
+pub struct SelectionTimer {
+    pub elapsed: f32,
+    pub stage: SelectionStage,
+}
+
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub enum SelectionStage {
+    Initial,
+    Impatient,   // 60 seconds
+    Furious,     // 3600 seconds (1 hour)
+    // TODO: Future feature - after certain game condition, player can restart
+    // and choose "Hot Dogs", triggering Terry's existential crisis:
+    // "Well, hot dogs is two words. And.... I was not aware of your...
+    // your mother didn't.... Jesus f.... okay. It's come to this."
+}
+
+impl Default for SelectionTimer {
+    fn default() -> Self {
+        Self {
+            elapsed: 0.0,
+            stage: SelectionStage::Initial,
+        }
+    }
+}
+
 pub fn setup_selection_screen(mut commands: Commands) {
+    commands.insert_resource(SelectionTimer::default());
+
     commands
         .spawn((
             Node {
@@ -30,7 +63,7 @@ pub fn setup_selection_screen(mut commands: Commands) {
             SelectionScreen,
         ))
         .with_children(|parent| {
-            // Terry's introduction
+            // Terry's introduction (will be updated by timer)
             parent.spawn((
                 Text::new("\"Hi, I'm Terry. I have an MBA, and I'm a hot dog. But enough about me: your mother told me that you want to start selling something. What is that... thing? Just... tell me what it is, in a word. One word.\""),
                 TextFont {
@@ -47,6 +80,7 @@ pub fn setup_selection_screen(mut commands: Commands) {
                     justify: Justify::Center,
                     ..default()
                 },
+                TerryDialogueText,
             ));
 
             // Question prompt
@@ -76,6 +110,41 @@ pub fn setup_selection_screen(mut commands: Commands) {
                     }
                 });
         });
+}
+
+/// Updates Terry's dialogue based on how long the player takes to choose
+pub fn update_selection_timer(
+    time: Res<Time>,
+    mut timer: ResMut<SelectionTimer>,
+    mut query: Query<&mut Text, With<TerryDialogueText>>,
+) {
+    timer.elapsed += time.delta_secs();
+
+    let new_stage = if timer.elapsed >= 3600.0 {
+        SelectionStage::Furious
+    } else if timer.elapsed >= 60.0 {
+        SelectionStage::Impatient
+    } else {
+        SelectionStage::Initial
+    };
+
+    if new_stage != timer.stage {
+        timer.stage = new_stage;
+
+        if let Ok(mut text) = query.single_mut() {
+            text.0 = match new_stage {
+                SelectionStage::Initial => {
+                    "\"Hi, I'm Terry. I have an MBA, and I'm a hot dog. But enough about me: your mother told me that you want to start selling something. What is that... thing? Just... tell me what it is, in a word. One word.\"".to_string()
+                }
+                SelectionStage::Impatient => {
+                    "\"Look, it's not fuckin--just... just what the fu--what is it? Word? Say a word?\"".to_string()
+                }
+                SelectionStage::Furious => {
+                    "\"Okay, dipshit, your mom didn't tell me I'd be dealing with a fucking retard here. Okay. So it's NOTHING, huh? Great. Yeah, I can market that--but you know, I'd rather I weren't.\"".to_string()
+                }
+            };
+        }
+    }
 }
 
 fn spawn_thing_button(parent: &mut ChildSpawnerCommands, thing_type: ThingType) {
@@ -136,6 +205,7 @@ pub fn cleanup_selection_screen(
     mut commands: Commands,
     query: Query<Entity, With<SelectionScreen>>,
 ) {
+    commands.remove_resource::<SelectionTimer>();
     for entity in &query {
         commands.entity(entity).despawn();
     }

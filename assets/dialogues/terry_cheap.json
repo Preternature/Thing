@@ -3,8 +3,8 @@
     {
       "id": "cheap_select",
       "trigger": "select_cheap",
-      "text": "Cheap Things? Bold strategy. Volume is key. Your mother would approve. She loves a bargain.",
-      "mood": "skeptical"
+      "text": "I like cheap. Just shovel that shit out and hope the masses eat it. Okay, no reason not to start right away.",
+      "mood": "enthusiastic"
     },
     {
       "id": "cheap_playing_1",
