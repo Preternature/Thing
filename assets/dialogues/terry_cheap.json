@@ -1,0 +1,46 @@
+{
+  "lines": [
+    {
+      "id": "cheap_select",
+      "trigger": "select_cheap",
+      "text": "Cheap Things? Bold strategy. Volume is key. Your mother would approve. She loves a bargain.",
+      "mood": "skeptical"
+    },
+    {
+      "id": "cheap_playing_1",
+      "trigger": "cheap_playing",
+      "text": "Remember: when selling cheap, it's all about turnover. Like a rotisserie. Like... never mind.",
+      "mood": "helpful"
+    },
+    {
+      "id": "cheap_playing_2",
+      "trigger": "cheap_playing",
+      "text": "The cheap strategy is what we call 'penetration pricing' in MBA-speak. Yes, that's a real term. I didn't make it up.",
+      "mood": "professional"
+    },
+    {
+      "id": "cheap_playing_3",
+      "trigger": "cheap_playing",
+      "text": "Volume! Volume! That's the ticket! Sell enough cheap Things and eventually we're rich. That's basic math. I think.",
+      "mood": "enthusiastic"
+    },
+    {
+      "id": "cheap_playing_4",
+      "trigger": "cheap_playing",
+      "text": "You know what cheap Things remind me of? Hot dogs at a baseball game. Overpriced, but people buy them anyway. Wait, that's the opposite.",
+      "mood": "confused"
+    },
+    {
+      "id": "cheap_playing_5",
+      "trigger": "cheap_playing",
+      "text": "The margins are thin, but so am I. I'm a hot dog. That's not relevant. Keep clicking.",
+      "mood": "random"
+    },
+    {
+      "id": "cheap_marketing",
+      "trigger": "cheap_marketing",
+      "text": "Marketing cheap Things is easy: just tell everyone they're cheap! It's called 'value proposition.' I learned that at business school.",
+      "mood": "helpful"
+    }
+  ]
+}

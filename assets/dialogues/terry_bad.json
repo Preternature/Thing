@@ -1,0 +1,70 @@
+{
+  "lines": [
+    {
+      "id": "bad_select",
+      "trigger": "select_bad",
+      "text": "Bad Things? Oh. Oh no. This is... this is exactly what my ethics professor warned me about. He was a bratwurst.",
+      "mood": "concerned"
+    },
+    {
+      "id": "bad_playing_1",
+      "trigger": "bad_playing",
+      "text": "I'm not saying this is wrong, but I'm definitely taking notes for my parole hearing.",
+      "mood": "nervous"
+    },
+    {
+      "id": "bad_playing_2",
+      "trigger": "bad_playing",
+      "text": "Remember when I said I had an MBA? I also had an ethics course. I failed it. But still.",
+      "mood": "guilty"
+    },
+    {
+      "id": "bad_playing_3",
+      "trigger": "bad_playing",
+      "text": "The customers seem... unhappy. But their money seems very happy in our account. Mixed signals.",
+      "mood": "conflicted"
+    },
+    {
+      "id": "bad_playing_4",
+      "trigger": "bad_playing",
+      "text": "You know, in some cultures, selling Bad Things is considered... also bad. Just something to think about.",
+      "mood": "passive_aggressive"
+    },
+    {
+      "id": "bad_playing_5",
+      "trigger": "bad_playing",
+      "text": "Every time a customer complains, a little piece of my soul withers. Good thing I'm mostly meat and bread.",
+      "mood": "dark"
+    },
+    {
+      "id": "bad_low_rep_1",
+      "trigger": "bad_low_rep",
+      "text": "Our reputation is tanking. This is fine. Everything is fine. *sweats mustard*",
+      "mood": "panicked"
+    },
+    {
+      "id": "bad_low_rep_2",
+      "trigger": "bad_low_rep",
+      "text": "People are starting to catch on. Quick, look innocent! You're selling Things! Normal, regular Things!",
+      "mood": "panicked"
+    },
+    {
+      "id": "bad_low_rep_3",
+      "trigger": "bad_low_rep",
+      "text": "The reviews are coming in. They're not good. Well, the Things aren't good either, so at least there's consistency.",
+      "mood": "resigned"
+    },
+    {
+      "id": "bad_crash",
+      "trigger": "bad_reputation_crash",
+      "text": "Well, well, well. If it isn't the consequences of our actions. I knew them once, in business school.",
+      "mood": "philosophical_doom"
+    },
+    {
+      "id": "bad_dark_1",
+      "trigger": "bad_playing",
+      "text": "Sometimes I wonder if your mother would be proud of this. Then I remember she asked me to help, not to enable. Oops.",
+      "mood": "dark_humor"
+    }
+  ]
+}

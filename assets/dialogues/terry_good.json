@@ -1,0 +1,46 @@
+{
+  "lines": [
+    {
+      "id": "good_select",
+      "trigger": "select_good",
+      "text": "A Good Thing! Quality over quantity. Very noble. Very slow. But noble.",
+      "mood": "approving"
+    },
+    {
+      "id": "good_playing_1",
+      "trigger": "good_playing",
+      "text": "Quality builds reputation. Reputation builds trust. Trust builds... the ability to charge more.",
+      "mood": "wise"
+    },
+    {
+      "id": "good_playing_2",
+      "trigger": "good_playing",
+      "text": "You know what makes a Good Thing good? I don't actually know. But the customers seem happy, so let's not question it.",
+      "mood": "thoughtful"
+    },
+    {
+      "id": "good_playing_3",
+      "trigger": "good_playing",
+      "text": "This is the 'sustainable business model' they talked about in school. Slow, steady, and only mildly anxiety-inducing.",
+      "mood": "calm"
+    },
+    {
+      "id": "good_playing_4",
+      "trigger": "good_playing",
+      "text": "A Good Thing is like a good hot dog: you know it when you taste it. Wait, don't taste me. That came out wrong.",
+      "mood": "awkward"
+    },
+    {
+      "id": "good_playing_5",
+      "trigger": "good_playing",
+      "text": "I'm proud of you for choosing the Good path. Your mother would be too. She always said you had good taste.",
+      "mood": "proud"
+    },
+    {
+      "id": "good_reputation_high",
+      "trigger": "good_high_rep",
+      "text": "Look at that reputation! People really love your Good Things. It's like being popular but with spreadsheets.",
+      "mood": "excited"
+    }
+  ]
+}

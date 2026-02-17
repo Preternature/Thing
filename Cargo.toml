@@ -1,0 +1,15 @@
+[package]
+name = "thing_simulator_2012"
+version = "0.1.0"
+edition = "2021"
+description = "A generic business simulator"
+
+[dependencies]
+bevy = { version = "0.18.0", features = ["dynamic_linking"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+rand = "0.10.0"
+
+# Enable optimizations for dependencies in dev builds for faster runtime
+[profile.dev.package."*"]
+opt-level = 3

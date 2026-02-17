@@ -1,0 +1,46 @@
+{
+  "lines": [
+    {
+      "id": "expensive_select",
+      "trigger": "select_expensive",
+      "text": "Expensive Things! Luxury positioning. I learned about this at Wharton. Well, I read about Wharton. In a dumpster behind Wharton.",
+      "mood": "impressed"
+    },
+    {
+      "id": "expensive_playing_1",
+      "trigger": "expensive_playing",
+      "text": "In the luxury market, scarcity creates value. Like hot dogs with business degrees.",
+      "mood": "sophisticated"
+    },
+    {
+      "id": "expensive_playing_2",
+      "trigger": "expensive_playing",
+      "text": "The key to expensive Things is confidence. Act like your Thing is worth $50. Because it is. We decided that.",
+      "mood": "confident"
+    },
+    {
+      "id": "expensive_playing_3",
+      "trigger": "expensive_playing",
+      "text": "Marketing is crucial for expensive Things. You're not selling a Thing, you're selling a lifestyle. A Thing lifestyle.",
+      "mood": "philosophical"
+    },
+    {
+      "id": "expensive_playing_4",
+      "trigger": "expensive_playing",
+      "text": "You know what's expensive? Wharton tuition. You know what's also expensive? Your Things. One of these I can actually afford.",
+      "mood": "sardonic"
+    },
+    {
+      "id": "expensive_playing_5",
+      "trigger": "expensive_playing",
+      "text": "The luxury market is all about exclusivity. Only the finest customers for the finest Things. I feel fancy just saying that.",
+      "mood": "fancy"
+    },
+    {
+      "id": "expensive_marketing",
+      "trigger": "expensive_marketing",
+      "text": "For expensive Things, marketing isn't a cost—it's an investment in perceived value. Your mother would understand. She's very perceptive.",
+      "mood": "professional"
+    }
+  ]
+}
