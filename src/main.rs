@@ -4,7 +4,9 @@
 mod business;
 mod clicker;
 mod dialogue;
+mod economy;
 mod game_state;
+mod marketing;
 mod terry;
 mod thing_type;
 mod ui;
@@ -14,6 +16,8 @@ use game_state::{AppState, GameStatePlugin};
 use business::BusinessPlugin;
 use clicker::ClickerPlugin;
 use dialogue::DialoguePlugin;
+use economy::EconomyPlugin;
+use marketing::MarketingPlugin;
 use terry::TerryPlugin;
 use ui::UiPlugin;
 
@@ -30,6 +34,8 @@ fn main() {
         .init_state::<AppState>()
         .add_plugins((
             GameStatePlugin,
+            EconomyPlugin,
+            MarketingPlugin,
             DialoguePlugin,
             TerryPlugin,
             BusinessPlugin,

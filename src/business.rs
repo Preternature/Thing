@@ -4,6 +4,8 @@ use bevy::prelude::*;
 use bevy::ecs::schedule::IntoScheduleConfigs;
 use crate::game_state::{AppState, GameState, ThingProducedEvent, MoneyChangedEvent, ReputationChangedEvent};
 use crate::thing_type::ThingType;
+use crate::economy::WorldState;
+use crate::marketing::MarketingState;
 
 pub struct BusinessPlugin;
 
@@ -22,20 +24,42 @@ impl Plugin for BusinessPlugin {
 }
 
 /// Process sales when Things are produced
+/// Revenue is affected by invisible world forces AND player-controlled marketing
 fn process_sales(
     mut game_state: ResMut<GameState>,
+    world: Res<WorldState>,
+    marketing: Res<MarketingState>,
     mut thing_events: MessageReader<ThingProducedEvent>,
     mut money_events: MessageWriter<MoneyChangedEvent>,
     mut rep_events: MessageWriter<ReputationChangedEvent>,
 ) {
     for event in thing_events.read() {
         if let Some(thing_type) = game_state.thing_type {
-            // Calculate revenue based on Thing type and marketing
+            // Calculate revenue based on multiple factors
             let base_price = thing_type.base_price();
-            let marketing_bonus = 1.0 + (game_state.marketing_level as f64 * 0.1);
-            let reputation_bonus = game_state.reputation as f64 / 2.5; // 2.5 rep = 1x, 5 rep = 2x
 
-            let revenue = event.amount as f64 * base_price * marketing_bonus * reputation_bonus;
+            // Player-controlled factors
+            let old_marketing_bonus = 1.0 + (game_state.marketing_level as f64 * 0.1);
+            let marketing_boost = marketing.calculate_demand_boost() as f64;
+            let reputation_bonus = game_state.reputation as f64 / 2.5;
+
+            // Invisible world factors (player has NO control over these)
+            let world_demand = world.calculate_demand_modifier() as f64;
+            let daily_chaos = world.daily_chaos() as f64;
+
+            // Price multiplier from marketing strategy
+            let price_mult = marketing.price_multiplier as f64;
+
+            // Final revenue calculation
+            let revenue = event.amount as f64
+                * base_price
+                * price_mult
+                * old_marketing_bonus
+                * marketing_boost
+                * reputation_bonus
+                * world_demand
+                * daily_chaos;
+
             let _old_money = game_state.money;
             game_state.money += revenue;
             game_state.customers_served += event.amount;

@@ -4,6 +4,7 @@ use bevy::prelude::*;
 use crate::game_state::GameState;
 use crate::business::{UpgradeState, UpgradeType};
 use crate::clicker::ClickEvent;
+use crate::economy::WorldState;
 use super::{UiRoot, NORMAL_BUTTON, HOVERED_BUTTON, PRESSED_BUTTON, DISABLED_BUTTON};
 
 /// Marker for main game screen elements
@@ -34,6 +35,10 @@ pub struct ReputationText;
 #[derive(Component)]
 pub struct ProductionText;
 
+/// Marker for date display
+#[derive(Component)]
+pub struct DateText;
+
 /// Marker for upgrade buttons
 #[derive(Component)]
 pub struct UpgradeButton(pub UpgradeType);
@@ -42,8 +47,9 @@ pub struct UpgradeButton(pub UpgradeType);
 #[derive(Component)]
 pub struct UpgradeCostText(pub UpgradeType);
 
-pub fn setup_main_screen(mut commands: Commands, game_state: Res<GameState>) {
+pub fn setup_main_screen(mut commands: Commands, game_state: Res<GameState>, world: Res<WorldState>) {
     let thing_type = game_state.thing_type.unwrap_or_default();
+    let date_str = world.date.format();
 
     commands
         .spawn((
@@ -78,6 +84,17 @@ pub fn setup_main_screen(mut commands: Commands, game_state: Res<GameState>) {
                         ..default()
                     },
                     TextColor(Color::WHITE),
+                ));
+
+                // Date display
+                parent.spawn((
+                    Text::new(date_str),
+                    TextFont {
+                        font_size: 20.0,
+                        ..default()
+                    },
+                    TextColor(Color::srgb(0.7, 0.8, 0.9)),
+                    DateText,
                 ));
 
                 parent.spawn((
@@ -488,10 +505,12 @@ fn reputation_stars(reputation: f32) -> String {
 
 pub fn update_stats_display(
     game_state: Res<GameState>,
-    mut things_query: Query<&mut Text, (With<ThingsText>, Without<MoneyText>, Without<ReputationText>, Without<ProductionText>)>,
-    mut money_query: Query<&mut Text, (With<MoneyText>, Without<ThingsText>, Without<ReputationText>, Without<ProductionText>)>,
-    mut rep_query: Query<&mut Text, (With<ReputationText>, Without<ThingsText>, Without<MoneyText>, Without<ProductionText>)>,
-    mut prod_query: Query<&mut Text, (With<ProductionText>, Without<ThingsText>, Without<MoneyText>, Without<ReputationText>)>,
+    world: Res<WorldState>,
+    mut things_query: Query<&mut Text, (With<ThingsText>, Without<MoneyText>, Without<ReputationText>, Without<ProductionText>, Without<DateText>)>,
+    mut money_query: Query<&mut Text, (With<MoneyText>, Without<ThingsText>, Without<ReputationText>, Without<ProductionText>, Without<DateText>)>,
+    mut rep_query: Query<&mut Text, (With<ReputationText>, Without<ThingsText>, Without<MoneyText>, Without<ProductionText>, Without<DateText>)>,
+    mut prod_query: Query<&mut Text, (With<ProductionText>, Without<ThingsText>, Without<MoneyText>, Without<ReputationText>, Without<DateText>)>,
+    mut date_query: Query<&mut Text, (With<DateText>, Without<ThingsText>, Without<MoneyText>, Without<ReputationText>, Without<ProductionText>)>,
 ) {
     for mut text in &mut things_query {
         **text = format!("Things: {}", game_state.things_produced);
@@ -509,6 +528,10 @@ pub fn update_stats_display(
         let multiplier = game_state.thing_type.map(|t| t.production_multiplier()).unwrap_or(1.0);
         let actual_rate = game_state.things_per_second * multiplier;
         **text = format!("{:.1} Things/sec", actual_rate);
+    }
+
+    for mut text in &mut date_query {
+        **text = world.date.format();
     }
 }
 
